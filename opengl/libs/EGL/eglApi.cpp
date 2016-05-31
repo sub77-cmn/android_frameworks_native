@@ -157,11 +157,13 @@ static const extention_map_t sExtensionMap[] = {
     { "eglGetSyncAttribKHR",
             (__eglMustCastToProperFunctionPointerType)&eglGetSyncAttribKHR },
 
+#ifndef MTK_HARDWARE
     // EGL_NV_system_time
     { "eglGetSystemTimeFrequencyNV",
             (__eglMustCastToProperFunctionPointerType)&eglGetSystemTimeFrequencyNV },
     { "eglGetSystemTimeNV",
             (__eglMustCastToProperFunctionPointerType)&eglGetSystemTimeNV },
+#endif
 
     // EGL_KHR_wait_sync
     { "eglWaitSyncKHR",
@@ -1880,6 +1882,7 @@ EGLClientBuffer eglCreateNativeClientBufferANDROID(const EGLint *attrib_list)
 // ----------------------------------------------------------------------------
 // NVIDIA extensions
 // ----------------------------------------------------------------------------
+#ifndef MTK_HARDWARE
 EGLuint64NV eglGetSystemTimeFrequencyNV()
 {
     clearError();
@@ -1915,7 +1918,7 @@ EGLuint64NV eglGetSystemTimeNV()
 
     return setErrorQuiet(EGL_BAD_DISPLAY, 0);
 }
-
+#endif
 // ----------------------------------------------------------------------------
 // Partial update extension
 // ----------------------------------------------------------------------------
